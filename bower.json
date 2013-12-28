@@ -1,6 +1,6 @@
 {
   "name": "kCalculator",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "devDependencies": {
     "angular": "1.2.6",
     "angular-ui-router": "~0.2.0",

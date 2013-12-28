@@ -1,7 +1,7 @@
 {
   "author": "Vincent Prouillet",
   "name": "kCalculator",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "http://vincent.is",
   "devDependencies": {
     "grunt": "~0.4.1",
