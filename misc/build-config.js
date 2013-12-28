@@ -31,7 +31,7 @@ var getConfig = function(grunt) {
 
   // Compass setup
   config.sassDirectory = 'src/style/';
-  config.sassMainFile = config.sassDirectory + 'style.scss';
+  config.sassMainFile = config.sassDirectory + 'app.scss';
   config.cssDirectory = config.buildDirectory + 'style';
 
   // File filters
