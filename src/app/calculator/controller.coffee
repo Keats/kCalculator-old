@@ -1,14 +1,18 @@
-modules = []
+modules = [
+  'calculator.service'
+]
 
 calculatorCtrl = angular.module 'calculator.controller', modules
 
-calculatorCtrl.controller 'CalculatorCtrl', ['$scope', ($scope) ->
+calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($scope, calculatorService) ->
   $scope.positiveIntegerRegex = /^[0-9]\d*$/
+  $scope.activityLevels = calculatorService.activityLevels
 
-  # Defaults radio choices
+  # Defaults option/radio choices
   $scope.info =
     units: 'metric'
     gender: 'male'
+    activity: $scope.activityLevels[0]
 
   # This is the object the service will populate with data
   $scope.result =

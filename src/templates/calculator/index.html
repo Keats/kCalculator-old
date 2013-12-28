@@ -28,6 +28,10 @@
 
     <label for="weight">Weight</label>
     <input required type="text" id="weight" ng-model="info.weight" ng-pattern="positiveIntegerRegex" />
+
+    <label for="activity">Activity level</label>
+    <select required ng-model="info.activity" id ="activity" ng-options="a.label for a in activityLevels track by a.value">
+    </select>
   </form>
 
 </div>
