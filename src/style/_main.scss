@@ -10,3 +10,19 @@
 .result {
   @include span-columns(6);
 }
+
+table {
+  width: 100%;
+
+  th {
+    text-align: left;
+  }
+}
+
+fieldset {
+  text-align: center;
+}
+
+.ng-dirty.ng-invalid {
+  border-color: red;
+}

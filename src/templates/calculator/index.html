@@ -2,31 +2,37 @@
   <h2>Info</h2>
 
   <form novalidate name="infoForm">
-    <label>
-      <input required type="radio" ng-model="info.units" value="metric">
-      Metric
-    </label>
-    <label>
-      <input required type="radio" ng-model="info.units" value="imperial">
-      Imperial
-    </label>
+    <fieldset>
+      <legend>Unit</legend>
 
-    <label>
-      <input required type="radio" ng-model="info.gender" value="male">
-      Male
-    </label>
-    <label>
-      <input required type="radio" ng-model="info.gender" value="female">
-      Female
-    </label>
+      <input required id="metric" type="radio" ng-model="info.units" value="metric">
+      <label for="metric">Metric</label>
+
+      <input required id="imperial" type="radio" ng-model="info.units" value="imperial">
+      <label for="imperial">Imperial</label>
+    </fieldset>
+
+    <input required id="male" type="radio" ng-model="info.gender" value="male">
+    <label for="male">Male</label>
+
+    <input required id="female" type="radio" ng-model="info.gender" value="female">
+    <label for="female">Female</label>
 
     <label for="age">Age</label>
     <input required type="text" id="age" ng-model="info.age" ng-pattern="positiveIntegerRegex" />
 
-    <label for="height">Height</label>
+    <label for="height">
+      Height
+      <span ng-show="info.units == 'metric'">in cm</span>
+      <span ng-show="info.units == 'imperial'">in inches</span>
+    </label>
     <input required type="text" id="height" ng-model="info.height" ng-pattern="positiveIntegerRegex" />
 
-    <label for="weight">Weight</label>
+    <label for="weight">
+      Weight
+      <span ng-show="info.units == 'metric'">in kg</span>
+      <span ng-show="info.units == 'imperial'">in lbs</span>
+    </label>
     <input required type="text" id="weight" ng-model="info.weight" ng-pattern="positiveIntegerRegex" />
 
     <label for="activity">Activity level</label>
@@ -49,11 +55,11 @@
      </select>
 
     <div ng-show="diet.calorieCycle == 'custom'">
-      <label for="modifierRestDays">Rest day</label>
+      <label for="modifierRestDays">Rest day (% over/under TDEE)</label>
       <input required type="text" id="modifierRestDays" ng-model="diet.modifierRestDays" ng-pattern="integerRegex" />
 
 
-      <label for="modifierWorkoutDays">Workout day</label>
+      <label for="modifierWorkoutDays">Workout day (% over/under TDEE)</label>
       <input required type="text" id="modifierWorkoutDays" ng-model="diet.modifierWorkoutDays" ng-pattern="integerRegex" />
     </div>
 
