@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-coffee');
-  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -11,6 +10,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-sass');
 
   var config = require('./misc/build-config.js')(grunt);
 
@@ -21,15 +21,13 @@ module.exports = function(grunt) {
       release: config.releaseDirectory
     },
 
-    // Build the foundation + custom files using compass
-    compass: {
-      main: {
+    sass: {
+      dist: {
         options: {
-          config: config.compassConfigFile,
-          cssDir: config.cssDirectory,
-          sassDir: config.sassDirectory,
-          force: true,
-          environment: 'production'
+          outputStyle: 'compressed'
+        },
+        files : {
+          'build/style/style.css': config.sassMainFile
         }
       }
     },
@@ -217,7 +215,7 @@ module.exports = function(grunt) {
 
       sass: {
         files: config.sassFileFilter,
-        tasks: ['compass:main']
+        tasks: ['sass:dist']
       },
 
       templates: {
@@ -278,7 +276,7 @@ module.exports = function(grunt) {
     'build',
     [
       'html2js',
-      'compass',
+      'sass',
       'coffeelint:src',
       'coffee',
       'copy:libsJs',
@@ -292,6 +290,7 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'dev',
     [
+      'clean',
       'karma:dev', // starts the karma server and browser
       'build',
       'watch'

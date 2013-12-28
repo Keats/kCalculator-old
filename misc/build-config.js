@@ -30,9 +30,8 @@ var getConfig = function(grunt) {
   config.releaseCssPath = config.releaseDirectory + 'style/app.css';
 
   // Compass setup
-  config.sassDirectory = 'src/style';
+  config.sassMainFile = 'src/style/style.scss';
   config.cssDirectory = config.buildDirectory + 'style';
-  config.compassConfigFile = config.miscDirectory + 'compass.rb';
 
   // File filters
   config.sourceFileFilter = ['src/**/*.coffee', '!src/**/*.tests.coffee'];
