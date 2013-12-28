@@ -1,1 +1,70 @@
-<p>World!</p>
+<div class="info">
+  <h2>Info</h2>
+
+  <form novalidate name="infoForm">
+    <label>
+      <input required type="radio" ng-model="info.units" value="metric">
+      Metric
+    </label>
+    <label>
+      <input required type="radio" ng-model="info.units" value="imperial">
+      Imperial
+    </label>
+
+    <label>
+      <input required type="radio" ng-model="info.gender" value="male">
+      Male
+    </label>
+    <label>
+      <input required type="radio" ng-model="info.gender" value="female">
+      Female
+    </label>
+
+    <label for="age">Age</label>
+    <input required type="text" id="age" ng-model="info.age" ng-pattern="positiveIntegerRegex" />
+
+    <label for="height">Height</label>
+    <input required type="text" id="height" ng-model="info.height" ng-pattern="positiveIntegerRegex" />
+
+    <label for="weight">Weight</label>
+    <input required type="text" id="weight" ng-model="info.weight" ng-pattern="positiveIntegerRegex" />
+  </form>
+
+</div>
+
+<div class="diet">
+  <h2>Diet</h2>
+  <form novalidate name="dietForm">
+
+  </form>
+</div>
+
+<div class="result">
+  <h2>Result</h2>
+
+  <table class="calories">
+    <tbody>
+      <tr>
+        <td><strong>BMR</strong></td>
+        <td>
+          {{ result.bmr }} kcal
+        </td>
+      </tr>
+      <tr>
+        <td><strong>TDEE</strong></td>
+        <td>
+          {{ result.tdee }} kcal
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Rest day</strong></td>
+        <td>{{ result.restDayCalories }} kcal</td>
+      </tr>
+      <tr>
+        <td><strong>Workout day</strong></td>
+        <td>{{ result.workoutDayCalories }} kcal</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

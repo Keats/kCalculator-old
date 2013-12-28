@@ -1,5 +1,7 @@
 
 modules = [
+  'calculator.controller'
+
   'ui.router.state',
 ]
 
@@ -14,5 +16,3 @@ calculator.config ['$stateProvider', ($stateProvider) ->
       pageTitle: 'Calculator'
 ]
 
-calculator.controller 'CalculatorCtrl', ['$scope', ($scope) ->
-]
