@@ -17,6 +17,14 @@ calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($sc
     height: 178
     weight: 74
 
+  $scope.diet =
+    type: 'normal'
+    calorieCycle: 'recomp'
+    modifierRestDays: 0
+    modifierWorkoutDays: 0
+    protein: 3
+    carbFatSplit: 'half'
+
   # This is the object the service will populate with data
   $scope.result =
     bmr: 0
@@ -37,9 +45,21 @@ calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($sc
         fat: 0
         fatCalories: 0
 
+  updateResults = ->
+    if $scope.infoForm.$valid and $scope.dietForm.$valid
+      leangains = calculatorService.calculateLeangains $scope.result.tdee, $scope.diet, $scope.info
+      $scope.result.macros = leangains.macros
+      $scope.result.restDayCalories = leangains.restDayCalories
+      $scope.result.workoutDayCalories = leangains.workoutDayCalories
+
   $scope.$watchCollection 'info', ->
     if $scope.infoForm.$valid
       $scope.result.bmr = calculatorService.calculateBMR $scope.info
       $scope.result.tdee = calculatorService.calculateTDEE $scope.info.activity.value, $scope.result.bmr
+
+      updateResults()
+
+  $scope.$watchCollection 'diet', ->
+    updateResults()
 
 ]

@@ -40,6 +40,24 @@
   <h2>Diet</h2>
   <form novalidate name="dietForm">
 
+    <label for="calorieCycle">Rest / Workout split</label>
+    <select id ="calorieCycle" ng-model="diet.calorieCycle">
+      <option value="recomp">Sandard recomp (-20 / +20)</option>
+      <option value="cut">Cut (-30 / -10)</option>
+      <option value="slowBulk">Slow bulk (-10 / +30)</option>
+      <option value="custom">Custom</option>
+     </select>
+
+    <label for="protein">Protein (g/kg bodyweight)</label>
+    <input required type="text" id="protein" ng-model="diet.protein" />
+
+    <label for="carbFatSplit">Carbs / Fat split (Rest / Workout)</label>
+    <select id ="carbFatSplit" ng-model="diet.carbFatSplit">
+      <option value="half">50/50 - 50/50</option>
+      <option value="quarter">25/75 - 75/25</option>
+      <option value="fifth">20/80 - 80/20</option>
+    </select>
+
   </form>
 </div>
 
@@ -68,6 +86,36 @@
         <td><strong>Workout day</strong></td>
         <td>{{ result.workoutDayCalories }} kcal</td>
       </tr>
+    </tbody>
+  </table>
+
+  <table class="macros">
+    <tbody>
+
+    <tr>
+      <th></th>
+      <th>Rest</th>
+      <th>Workout</th>
+    </tr>
+
+    <tr>
+      <td><strong>Fat</strong></td>
+      <td>{{ result.macros.rest.fat }}g ({{ result.macros.rest.fatCalories }} kcal)</td>
+      <td>{{ result.macros.workout.fat }}g ({{ result.macros.workout.fatCalories }} kcal)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Carbs</strong></td>
+      <td>{{ result.macros.rest.carbs }}g ({{ result.macros.rest.carbsCalories }} kcal)</td>
+      <td>{{ result.macros.workout.carbs }}g ({{ result.macros.workout.carbsCalories }} kcal)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Proteins</strong></td>
+      <td>{{ result.macros.proteins }}g  ({{ result.macros.proteinsCalories }} kcal)</td>
+      <td>{{ result.macros.proteins }}g ({{ result.macros.proteinsCalories }} kcal)</td>
+    </tr>
+
     </tbody>
   </table>
 
