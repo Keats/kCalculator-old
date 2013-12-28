@@ -48,6 +48,15 @@
       <option value="custom">Custom</option>
      </select>
 
+    <div ng-show="diet.calorieCycle == 'custom'">
+      <label for="modifierRestDays">Rest day</label>
+      <input required type="text" id="modifierRestDays" ng-model="diet.modifierRestDays" ng-pattern="integerRegex" />
+
+
+      <label for="modifierWorkoutDays">Workout day</label>
+      <input required type="text" id="modifierWorkoutDays" ng-model="diet.modifierWorkoutDays" ng-pattern="integerRegex" />
+    </div>
+
     <label for="protein">Protein (g/kg bodyweight)</label>
     <input required type="text" id="protein" ng-model="diet.protein" />
 

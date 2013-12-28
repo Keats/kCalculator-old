@@ -72,9 +72,10 @@ calculatorService.factory 'calculatorService', [() ->
     Math.round(activity * bmr)
 
 
+  # Calculates calories need per rest/workout day
+  # returns an array [restCalories, workoutCalories]
   _calculateLeangainsCalories = (modifiers, tdee) ->
     (Math.round(tdee + (tdee * (modifier / 100))) for modifier in modifiers)
-
 
   # Proteins are easy to calculate since we have the g/kg value
   _calculateLeangainsProteins = (info, diet) ->
@@ -87,7 +88,6 @@ calculatorService.factory 'calculatorService', [() ->
       proteins: proteins
       proteinsCalories: proteins * _caloriesInMacro.proteins
     }
-
 
   # Carbs and Fat are split after the proteins, calculating the % of the
   # remaining calories for each
@@ -107,12 +107,13 @@ calculatorService.factory 'calculatorService', [() ->
   # Main part of the service, need to take into account the rest/workout split
   # and the carbs/fat split
   service.calculateLeangains = (tdee, diet, info) ->
-    if diet.caloriesSplit is 'custom'
+    if diet.calorieCycle is 'custom'
       modifiers =  [diet.modifierRestDays, diet.modifierWorkoutDays]
     else
       modifiers = _leangainsClassicCycles[diet.calorieCycle]
 
     proteins = _calculateLeangainsProteins info, diet
+
     [restCalories, workoutCalories] = _calculateLeangainsCalories modifiers, tdee
 
     restDay = _calculateLeangainsMacro(restCalories - proteins.proteinsCalories, 'rest', diet)

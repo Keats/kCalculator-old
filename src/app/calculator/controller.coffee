@@ -6,6 +6,7 @@ calculatorCtrl = angular.module 'calculator.controller', modules
 
 calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($scope, calculatorService) ->
   $scope.positiveIntegerRegex = /^[0-9]\d*$/
+  $scope.integerRegex = /^-?[0-9]\d*$/
   $scope.activityLevels = calculatorService.activityLevels
 
   # Defaults option/radio choices
@@ -45,19 +46,23 @@ calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($sc
         fat: 0
         fatCalories: 0
 
+  # Main method of the controller, updates the result object with base and
+  # leangains data
   updateResults = ->
     if $scope.infoForm.$valid and $scope.dietForm.$valid
+      calculateBase()
       leangains = calculatorService.calculateLeangains $scope.result.tdee, $scope.diet, $scope.info
       $scope.result.macros = leangains.macros
       $scope.result.restDayCalories = leangains.restDayCalories
       $scope.result.workoutDayCalories = leangains.workoutDayCalories
 
-  $scope.$watchCollection 'info', ->
-    if $scope.infoForm.$valid
-      $scope.result.bmr = calculatorService.calculateBMR $scope.info
-      $scope.result.tdee = calculatorService.calculateTDEE $scope.info.activity.value, $scope.result.bmr
+  # Asks the service to calculate BMR and TDEE with the data in the scope
+  calculateBase = ->
+    $scope.result.bmr = calculatorService.calculateBMR $scope.info
+    $scope.result.tdee = calculatorService.calculateTDEE $scope.info.activity.value, $scope.result.bmr
 
-      updateResults()
+  $scope.$watchCollection 'info', ->
+    updateResults()
 
   $scope.$watchCollection 'diet', ->
     updateResults()
