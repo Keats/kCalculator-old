@@ -197,7 +197,7 @@ module.exports = function(grunt) {
     // what to do when a file changes
     watch: {
       options: {
-        livereload: true,
+        livereload: true
       },
 
       coffeeSrc: {
