@@ -14,9 +14,6 @@ calculatorCtrl.controller 'CalculatorCtrl', ['$scope', 'calculatorService', ($sc
     units: 'metric'
     gender: 'male'
     activity: $scope.activityLevels[0]
-    age: 25
-    height: 178
-    weight: 74
 
   $scope.diet =
     type: 'normal'
