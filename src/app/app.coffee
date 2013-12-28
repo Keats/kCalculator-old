@@ -2,15 +2,15 @@
 modules = [
   'templates',
 
-  'ngBoilerplate.home',
+  'kcalculator.calculator',
 
   'ui.router.state'
 ]
 
-appModule = angular.module('ngBoilerplate', modules)
+appModule = angular.module('kcalculator', modules)
 
 appModule.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
-  $urlRouterProvider.otherwise '/home'
+  $urlRouterProvider.otherwise '/'
 ])
 
 appModule.controller 'AppCtrl', ['$scope', '$location', ($scope, $location) ->
@@ -18,5 +18,5 @@ appModule.controller 'AppCtrl', ['$scope', '$location', ($scope, $location) ->
     event, toState, toParams, fromState, fromParams
   ) ->
     if angular.isDefined(toState.data.pageTitle)
-      $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate'
+      $scope.pageTitle = toState.data.pageTitle
 ]
