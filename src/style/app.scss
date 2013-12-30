@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
-@import "normalize";
-@import "bourbon/bourbon";
+// Reset, Bourbon $ Neat stuff
+@import "snowflake/normalize";
+@import "snowflake/bourbon/bourbon";
 @import "grid-settings";
-@import "neat/neat";
-@import "snowflake/main";
+@import "snowflake/neat/neat";
 
+// Foundation style we want to include with overriden settings if necessary
+@import "foundation";
+
+// The app itself
 @import "main";

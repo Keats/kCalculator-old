@@ -12,6 +12,8 @@
 }
 
 table {
+  @include table;
+
   width: 100%;
 
   th {
